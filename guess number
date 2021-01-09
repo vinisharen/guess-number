@@ -1,34 +1,42 @@
-import random
 import math
+import random
 
-lower = int(input("Emter Lower bound:- ")) 
+
+while True:
+   
+    lower = int(input("Enter Lower bound:- "))
  
 
-upper = int(input("Enter Upper bound:- "))  
+    upper = int(input("Enter Upper bound:- "))
+    if(lower >= upper):
+        print("Lower bound must ber smaller than upperbound")
+        continue
+    else:
+        break
  
 
-x = random.randint(lower, upper)
+guess_number = random.randint(lower, upper)
 print("\n\tYou've only ", round(math.log(upper - lower + 1, 2))," chances to guess the integer!\n")
  
- 
-count = 0
- 
 
-while count < math.log(upper - lower + 1, 2):
-    count += 1
-     
-    guess = int(input("Guess a number:- ")) 
-     
-  
-    if x == guess:  
-       print("Congratulations you did it in ", count, " try")
-       
-       break
-    elif x > guess:
-       print("You guessed too small!")
-    elif x < guess:
-       print("You Guessed too high!")
-if count >= math.log(upper - lower + 1, 2):
-   print("\nThe number is %d"%x)
-   print("\tBetter Luck Next time!")
- 
+counter = 0
+while counter < math.log(upper - lower + 1, 2):
+    try:
+        num1 = int(input('Guess a number: '))
+    except ValueError:
+        print("Wrong Input")
+        continue
+    if num1 < guess_number:
+        print("Enter a higher number")
+    elif num1 > guess_number:
+        print("Enter a lower number")
+    elif num1 == guess_number:
+        print("You are correct")
+        break
+    counter += 1
+
+if counter >= math.log(upper - lower + 1, 2):
+    print("\nThe number is %d"%guess_number)
+
+    print("\tBetter Luck Next time!")
+
